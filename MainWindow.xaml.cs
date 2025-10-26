@@ -68,10 +68,15 @@ namespace CapturadorIntegrado_v3
 
             // Carpeta por defecto (si no hay nada)
             if (string.IsNullOrWhiteSpace(TbDest.Text))
-                TbDest.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
-            // Escalas básicas
-            if (CmbScale.Items.Count == 0)
+            {
+                string defaultPath = @"C:\Users\amaza\Documents\Destino Capturas";
+                if (Directory.Exists(defaultPath))
+                    TbDest.Text = defaultPath;
+                else
+                    TbDest.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            }
+                // Escalas básicas
+                if (CmbScale.Items.Count == 0)
             {
                 CmbScale.Items.Add("100 %");
                 CmbScale.Items.Add("125 %");
